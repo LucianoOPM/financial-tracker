@@ -15,13 +15,15 @@ import { SidebarNav } from "@components/layout/sidebar-nav";
 export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader>
+      <SidebarHeader className="border-b border-sidebar-border pb-3">
         <Link
           href="/dashboard"
-          className="flex items-center gap-2 px-2 py-1 text-sidebar-foreground"
+          className="flex items-center gap-3 px-3 py-2 text-sidebar-foreground"
         >
-          <TrendingUp className="shrink-0" />
-          <span className="truncate font-semibold tracking-tight">
+          <div className="flex size-7 shrink-0 items-center justify-center rounded bg-sidebar-primary">
+            <TrendingUp className="size-4 text-sidebar-primary-foreground" />
+          </div>
+          <span className="truncate text-sm font-semibold uppercase tracking-widest text-sidebar-foreground">
             FinControl
           </span>
         </Link>

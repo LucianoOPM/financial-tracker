@@ -7,8 +7,12 @@ import { loginSchema, LoginSchema } from "@lib/schemas/login";
 import { authClient } from "@lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginForm = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const {
     register,
     handleSubmit,
@@ -19,11 +23,16 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: LoginSchema) => {
-    await authClient.signIn.email({
+    const { error } = await authClient.signIn.email({
       email: data.email,
       password: data.password,
       rememberMe: data.rememberMe,
     });
+
+    if (!error) {
+      const callbackUrl = searchParams.get("callbackUrl") ?? "/dashboard";
+      router.push(callbackUrl);
+    }
   };
 
   return (

@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm";
-import { index, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { index, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 import { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { createId } from "@paralleldrive/cuid2";
 import { user } from "./user";
@@ -12,10 +12,10 @@ export const transactionCategory = pgTable(
   {
     id: text("id").primaryKey().$defaultFn(() => createId()),
     userId: text("user_id").references(() => user.id, { onDelete: "cascade" }),
-    name: text("name").notNull(),
+    name: varchar("name", { length: 100 }).notNull(),
     type: transactionTypeEnum("type").notNull(),
-    color: text("color"),
-    icon: text("icon"),
+    color: varchar("color", { length: 7 }),
+    icon: varchar("icon", { length: 100 }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .defaultNow()
       .notNull(),

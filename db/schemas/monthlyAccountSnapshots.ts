@@ -53,6 +53,7 @@ export const monthlyAccountSnapshot = pgTable(
       table.year,
       table.month,
     ),
+    index("snapshots_account_id_idx").on(table.accountId),
   ],
 );
 

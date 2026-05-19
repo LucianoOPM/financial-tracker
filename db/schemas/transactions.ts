@@ -58,6 +58,9 @@ export const transaction = pgTable(
       table.transactionDate,
     ),
     index("transactions_transfer_group_idx").on(table.transferGroupId),
+    index("transactions_category_id_idx").on(table.categoryId),
+    index("transactions_status_idx").on(table.status),
+    index("transactions_recurring_id_idx").on(table.recurringTransactionId),
   ],
 );
 

@@ -1,4 +1,4 @@
-"use client";
+import { Suspense } from "react";
 import Link from "next/link";
 import { TrendingUp, Lock, BarChart2, ShieldCheck, ArrowRight } from "lucide-react";
 import LoginForm from "./components/LoginForm";
@@ -115,7 +115,9 @@ const LoginPage = () => {
           </div>
 
           {/* Form */}
-          <LoginForm />
+          <Suspense>
+            <LoginForm />
+          </Suspense>
 
           {/* Register link */}
           <p className="text-center text-xs text-muted-foreground">

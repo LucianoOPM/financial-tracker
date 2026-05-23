@@ -31,3 +31,5 @@ export const executionStatusEnum = pgEnum("execution_status", [
   "success",
   "failed",
 ]);
+
+export const transferSideEnum = pgEnum("transfer_side", ["in", "out"]);

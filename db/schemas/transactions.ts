@@ -12,6 +12,7 @@ import { user } from "./user";
 import {
   transactionTypeEnum,
   transactionStatusEnum,
+  transferSideEnum,
 } from "./enums";
 import { financialAccount } from "./financialAccounts";
 import { transactionCategory } from "./transactionCategories";
@@ -43,6 +44,7 @@ export const transaction = pgTable(
       { onDelete: "set null" },
     ),
     transferGroupId: text("transfer_group_id"),
+    transferSide: transferSideEnum("transfer_side"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .defaultNow()
       .notNull(),

@@ -13,17 +13,18 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "ignoreDeprecations": "6.0",
     "plugins": [
       {
-        "name": "next",
-      },
+        "name": "next"
+      }
     ],
     "baseUrl": ".",
     "paths": {
       "@db/*": ["./db/*"],
       "@lib/*": ["./lib/*"],
-      "@components/*": ["./components/*"],
-    },
+      "@components/*": ["./components/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -31,7 +32,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts",
+    "**/*.mts"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }

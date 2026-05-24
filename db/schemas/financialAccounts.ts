@@ -45,7 +45,12 @@ export const financialAccountRelations = relations(financialAccount, ({ one, man
     references: [user.id],
   }),
   transactions: many(transaction),
-  recurringTransactions: many(recurringTransaction),
+  recurringTransactions: many(recurringTransaction, {
+    relationName: "recurringTransactionAccount",
+  }),
+  destinationRecurringTransactions: many(recurringTransaction, {
+    relationName: "recurringTransactionDestinationAccount",
+  }),
   monthlyAccountSnapshots: many(monthlyAccountSnapshot),
 }));
 

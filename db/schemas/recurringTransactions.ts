@@ -28,6 +28,10 @@ export const recurringTransaction = pgTable(
     accountId: text("account_id")
       .notNull()
       .references(() => financialAccount.id, { onDelete: "cascade" }),
+    destinationAccountId: text("destination_account_id").references(
+      () => financialAccount.id,
+      { onDelete: "set null" },
+    ),
     categoryId: text("category_id").references(
       () => transactionCategory.id,
       { onDelete: "set null" },
@@ -40,6 +44,7 @@ export const recurringTransaction = pgTable(
     startDate: date("start_date").notNull(),
     endDate: date("end_date"),
     nextExecutionDate: date("next_execution_date").notNull(),
+    lastExecutedAt: timestamp("last_executed_at", { withTimezone: true }),
     isActive: boolean("is_active").default(true).notNull(),
     autoCreate: boolean("auto_create").default(true).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
@@ -66,6 +71,12 @@ export const recurringTransactionRelations = relations(
     financialAccount: one(financialAccount, {
       fields: [recurringTransaction.accountId],
       references: [financialAccount.id],
+      relationName: "recurringTransactionAccount",
+    }),
+    destinationAccount: one(financialAccount, {
+      fields: [recurringTransaction.destinationAccountId],
+      references: [financialAccount.id],
+      relationName: "recurringTransactionDestinationAccount",
     }),
     transactionCategory: one(transactionCategory, {
       fields: [recurringTransaction.categoryId],

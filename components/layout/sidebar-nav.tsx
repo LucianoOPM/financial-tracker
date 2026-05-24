@@ -38,7 +38,7 @@ export function SidebarNav() {
 
         return (
           <SidebarMenuItem key={href}>
-            <SidebarMenuButton asChild isActive={isActive} tooltip={label}>
+            <SidebarMenuButton asChild isActive={isActive} tooltip={label} className="h-9 px-3 text-xs">
               <Link href={href}>
                 <Icon />
                 <span>{label}</span>
